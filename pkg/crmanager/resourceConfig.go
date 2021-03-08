@@ -434,6 +434,12 @@ func (crMgr *CRManager) prepareRSConfigFromVirtualServer(
 	if vs.Spec.WAF != "" {
 		rsCfg.Virtual.WAF = vs.Spec.WAF
 	}
+
+	// set the FirewallPolicyEnforced policy
+	if vs.Spec.FirewallPolicyEnforced != "" {
+		rsCfg.Virtual.FirewallPolicyEnforced = vs.Spec.FirewallPolicyEnforced
+	}
+
 	//Attach allowVlans.
 	rsCfg.Virtual.AllowVLANs = vs.Spec.AllowVLANs
 
