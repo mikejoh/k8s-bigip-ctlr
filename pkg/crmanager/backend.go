@@ -491,11 +491,32 @@ func createServiceDecl(cfg *ResourceConfig, sharedApp as3Application) {
 		}
 	}
 
-	//Attaching FirewallPolciyEnforced policy
+	//Attaching FirewallPolicyEnforced policy
 	if cfg.Virtual.FirewallPolicyEnforced != "" {
 		svc.FirewallPolicyEnforced = &as3ResourcePointer{
 			BigIP: fmt.Sprintf("%v", cfg.Virtual.FirewallPolicyEnforced),
 		}
+	}
+
+	//Attaching FirewallPolicyStaged policy
+	if cfg.Virtual.FirewallPolicyStaged != "" {
+		svc.FirewallPolicyStaged = &as3ResourcePointer{
+			BigIP: fmt.Sprintf("%v", cfg.Virtual.FirewallPolicyStaged),
+		}
+	}
+
+	//Attach securityLogProfiles if exist.
+	if len(cfg.Virtual.SecurityLogProfiles) > 0 {
+		var logProfiles []as3ResourcePointer
+		for _, logProfile := range cfg.Virtual.SecurityLogProfiles {
+			logProfiles = append(
+				logProfiles,
+				as3ResourcePointer{
+					BigIP: fmt.Sprintf("%v", logProfile),
+				},
+			)
+		}
+		svc.SecurityLogProfiles = logProfiles
 	}
 
 	//Attach allowVlans if exist.

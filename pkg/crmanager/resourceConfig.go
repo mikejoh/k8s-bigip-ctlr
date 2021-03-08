@@ -440,6 +440,14 @@ func (crMgr *CRManager) prepareRSConfigFromVirtualServer(
 		rsCfg.Virtual.FirewallPolicyEnforced = vs.Spec.FirewallPolicyEnforced
 	}
 
+	// set the FirewallPolicyStaged policy
+	if vs.Spec.FirewallPolicyStaged != "" {
+		rsCfg.Virtual.FirewallPolicyStaged = vs.Spec.FirewallPolicyStaged
+	}
+
+	//Attach SecurityLogProfiles.
+	rsCfg.Virtual.SecurityLogProfiles = vs.Spec.SecurityLogProfiles
+
 	//Attach allowVlans.
 	rsCfg.Virtual.AllowVLANs = vs.Spec.AllowVLANs
 

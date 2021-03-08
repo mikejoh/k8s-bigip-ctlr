@@ -30,6 +30,8 @@ type VirtualServerSpec struct {
 	SNAT                   string   `json:"snat,omitempty"`
 	WAF                    string   `json:"waf,omitempty"`
 	FirewallPolicyEnforced string   `json:"firewallPolicyEnforced,omitempty"`
+	FirewallPolicyStaged   string   `json:"firewallPolicyStaged,omitempty`
+	SecurityLogProfiles    []string `json:"securityLogProfiles,omitempty`
 	RewriteAppRoot         string   `json:"rewriteAppRoot,omitempty"`
 	AllowVLANs             []string `json:"allowVlans,omitempty"`
 	IRules                 []string `json:"iRules,omitempty"`
